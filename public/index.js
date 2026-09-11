@@ -34,6 +34,11 @@ scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 
+function openSite(url) {
+	address.value = url;
+	form.requestSubmit();
+}
+
 form.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
@@ -59,6 +64,14 @@ form.addEventListener("submit", async (event) => {
 	}
 	const frame = scramjet.createFrame();
 	frame.frame.id = "sj-frame";
+	document.getElementById("home").hidden = true;
 	document.body.appendChild(frame.frame);
 	frame.go(url);
 });
+
+document
+	.getElementById("duckduckgo")
+	.addEventListener("click", () => openSite("https://duckduckgo.com"));
+document
+	.getElementById("geforce-now")
+	.addEventListener("click", () => openSite("https://play.geforcenow.com"));

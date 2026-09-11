@@ -5,7 +5,7 @@
 #     container_name: scramjet
 #     restart: unless-stopped
 #     ports:
-#       - "8080:8080"
+#       - "4001:4001"
 
 # networks:
 #   default:
