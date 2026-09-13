@@ -65,6 +65,7 @@ form.addEventListener("submit", async (event) => {
 	const frame = scramjet.createFrame();
 	frame.frame.id = "sj-frame";
 	document.getElementById("home").hidden = true;
+	document.body.classList.add("route-open");
 	document.body.appendChild(frame.frame);
 	frame.go(url);
 });

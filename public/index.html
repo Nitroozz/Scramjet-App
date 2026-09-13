@@ -270,6 +270,8 @@
 				height: 100%;
 				border: 0;
 			}
+
+			body.route-open .route-ui { display: none !important; }
 		</style>
 		<script src="register-sw.js" defer></script>
 		<script src="search.js" defer></script>
@@ -277,8 +279,8 @@
 	</head>
 
 	<body>
-		<main id="home">
-			<p class="construction-banner">// UNDER CONSTRUCTION //</p>
+		<p class="construction-banner">// UNDER CONSTRUCTION //</p>
+		<main id="home" class="route-ui">
 			<pre class="ascii-title" aria-label="Infinite Node C ASCII logo">██▓ ███▄    █  █████▒ ██▓ ███▄    █  ██▓▄▄▄█████▓▓█████
 ▓██▒ ██ ▀█   █▓██   ▒▓██▒ ██ ▀█   █▓██▒▓  ██▒ ▓▒▓█   ▀
 ▒██▒▓██  ▀█ ██▒████ ░▒██▒▓██  ▀█ ██▒▒██▒▒ ▓██░ ▒░▒███
@@ -291,16 +293,16 @@
 				<button id="geforce-now" type="button">1</button>
 			</div>
 		</main>
-		<button class="corner-btn" type="button" onclick="openPanel()">[ ABOUT ]</button>
-		<a class="linktree-qr-corner" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener" aria-label="Open Ashvir's Linktree">
+		<button class="corner-btn route-ui" type="button" onclick="openPanel()">[ ABOUT ]</button>
+		<a class="linktree-qr-corner route-ui" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener" aria-label="Open Ashvir's Linktree">
 			<img class="linktree-qr" src="gifs/Ashvir_.png" alt="Scan to open Ashvir's Linktree" />
 		</a>
-		<div class="socials-row">
+		<div class="socials-row route-ui">
 			<a class="social-link" href="https://discord.gg/vNzvXMWzRF" target="_blank" rel="noopener">◈ DISCORD</a>
 			<a class="social-link linktree" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener">🌿 LINKTREE</a>
 		</div>
-		<div class="overlay" id="overlay" onclick="closePanel()"></div>
-		<aside class="panel" id="panel" aria-label="About Infinite">
+		<div class="overlay route-ui" id="overlay" onclick="closePanel()"></div>
+		<aside class="panel route-ui" id="panel" aria-label="About Infinite">
 			<button class="pcls" type="button" onclick="closePanel()">[ X ]</button>
 			<div class="ptitle">INFINITE</div>
 			<p class="psub">// NODE C SYSTEM PANEL</p>
