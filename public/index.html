@@ -17,37 +17,250 @@
 			html,
 			body {
 				margin: 0;
-				min-height: 100%;
-				background: #111;
+				min-height: 100vh;
+				width: 100%;
+				background: #12070f;
 			}
 
 			body {
 				display: grid;
 				place-items: center;
-				font-family: Arial, sans-serif;
+				font-family: "Space Mono", "Courier New", monospace;
+				color: #d8ffd8;
+				overflow: hidden;
+			}
+
+			body::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+				pointer-events: none;
+				background-image: linear-gradient(rgba(0, 255, 60, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 60, 0.04) 1px, transparent 1px);
+				background-size: 42px 42px;
 			}
 
 			#home {
 				display: flex;
-				gap: 16px;
-				flex-wrap: wrap;
+				flex-direction: column;
+				align-items: center;
 				justify-content: center;
+				gap: 1.4rem;
+				position: relative;
+				z-index: 1;
+				width: min(92vw, 680px);
+				padding: 2rem;
+				border: 1px solid rgba(0, 255, 70, 0.3);
+				background: rgba(0, 20, 4, 0.7);
+				box-shadow: 0 0 32px rgba(0, 255, 60, 0.08);
+				margin: auto;
+			}
+
+			.ascii-title {
+				margin: 0;
+				max-width: 100%;
+				overflow-x: auto;
+				color: #eafff0;
+				font-family: "Space Mono", "Courier New", monospace;
+				font-size: clamp(0.34rem, 1.35vw, 0.68rem);
+				line-height: 1.3;
+				letter-spacing: 0.02em;
+				text-align: center;
+				text-shadow: 0 0 10px rgba(0, 255, 70, 0.35);
+			}
+
+			.node-label {
+				margin: -0.55rem 0 0;
+				color: rgba(150, 255, 160, 0.55);
+				font-size: 0.62rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+			}
+
+			.construction-banner {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 25;
+				margin: 0;
+				padding: 0.7rem 1rem;
+				border: 1px solid rgba(255, 70, 170, 0.7);
+				border-top: 0;
+				background: rgba(91, 18, 61, 0.45);
+				color: #ff9dce;
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-align: center;
+				text-transform: uppercase;
+				box-shadow: 0 0 12px rgba(255, 40, 150, 0.16);
+			}
+
+			.node-actions {
+				display: flex;
+				justify-content: center;
+				gap: 0.8rem;
+				width: 100%;
 			}
 
 			button {
-				min-width: 180px;
-				padding: 16px 24px;
-				border: 0;
-				border-radius: 6px;
-				background: #2d7ff9;
-				color: #fff;
-				font-size: 16px;
-				font-weight: 600;
+				min-width: 9rem;
+				padding: 0.85rem 1.8rem;
+				border: 1px solid rgba(0, 255, 70, 0.5);
+				border-radius: 0;
+				background: #041c08;
+				color: #4dff6e;
+				font-family: inherit;
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				box-shadow: inset 0 0 12px rgba(0, 255, 60, 0.08), 0 0 10px rgba(0, 255, 60, 0.08);
 				cursor: pointer;
+				transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 			}
 
 			button:hover {
-				background: #1769df;
+				background: #0a4515;
+				color: #fff;
+				transform: translateY(-2px);
+			}
+
+			button:active {
+				transform: translateY(1px);
+			}
+
+			@media (max-width: 520px) {
+				#home { padding: 1.25rem 0.75rem; }
+				.node-actions { gap: 0.5rem; }
+				button { min-width: 7rem; padding-inline: 1rem; }
+			}
+
+			.corner-btn,
+			.social-link,
+			.linktree-qr-corner,
+			.pcls {
+				font-family: inherit;
+			}
+
+			.corner-btn {
+				position: fixed;
+				bottom: 1.5rem;
+				right: 1.5rem;
+				z-index: 20;
+				padding: 0.65rem 1rem;
+				border: 1px solid rgba(0, 255, 70, 0.45);
+				background: rgba(0, 20, 4, 0.88);
+				color: #9dffb0;
+				font-size: 0.7rem;
+				letter-spacing: 0.12em;
+				cursor: pointer;
+			}
+
+			.corner-btn:hover { background: #0a4515; color: #fff; }
+
+			.linktree-qr-corner {
+				position: fixed;
+				left: 1rem;
+				bottom: 1rem;
+				z-index: 20;
+				width: 4.5rem;
+			}
+
+			.linktree-qr {
+				display: block;
+				width: 100%;
+				height: auto;
+				border: 1px solid rgba(255, 176, 0, 0.6);
+			}
+
+			.socials-row {
+				position: fixed;
+				left: 50%;
+				bottom: 1.5rem;
+				z-index: 20;
+				display: flex;
+				gap: 0.5rem;
+				transform: translateX(-50%);
+			}
+
+			.social-link {
+				padding: 0.65rem 0.9rem;
+				border: 1px solid rgba(0, 255, 70, 0.35);
+				background: rgba(0, 20, 4, 0.88);
+				color: #9dffb0;
+				font-size: 0.65rem;
+				text-decoration: none;
+			}
+
+			.social-link.linktree { border-color: rgba(255, 176, 0, 0.5); color: #ffcf70; }
+			.social-link:hover { background: #0a4515; color: #fff; }
+
+			.overlay {
+				position: fixed;
+				inset: 0;
+				z-index: 30;
+				background: rgba(0, 10, 2, 0.82);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+
+			.overlay.open { opacity: 1; pointer-events: auto; }
+
+			.panel {
+				position: fixed;
+				top: 0;
+				right: 0;
+				z-index: 31;
+				width: min(460px, 92vw);
+				height: 100%;
+				overflow-y: auto;
+				padding: 2rem 1.5rem;
+				border-left: 1px solid rgba(0, 255, 70, 0.3);
+				background: #001003;
+				transform: translateX(100%);
+				transition: transform 0.3s ease;
+			}
+
+			.panel.open { transform: translateX(0); }
+			.pcls { float: right; padding: 0.35rem 0.55rem; border: 1px solid rgba(0, 255, 70, 0.35); background: transparent; color: #9dffb0; cursor: pointer; }
+			.ptitle { clear: both; padding-top: 1.5rem; color: #4dff6e; font-size: 1.25rem; letter-spacing: 0.12em; }
+			.psub, .slabel { color: rgba(150, 255, 160, 0.55); font-size: 0.65rem; letter-spacing: 0.12em; }
+			.pc { margin-top: 1rem; padding: 0.9rem; border: 1px solid rgba(0, 255, 70, 0.18); color: rgba(216, 255, 216, 0.78); font-size: 0.75rem; line-height: 1.7; }
+			.pc h3 { margin: 0 0 0.35rem; color: #d8ffd8; font-size: 0.8rem; }
+			.socials { margin-top: 1.5rem; }
+			.socials .social-link { display: flex; margin-top: 0.6rem; }
+
+			@media (max-width: 700px) {
+				.socials-row { bottom: 1rem; }
+				.social-link { font-size: 0.58rem; }
+				.linktree-qr-corner { width: 3.5rem; }
+			}
+
+			/* Pink Node C theme */
+			body { color: #ffd6ea; }
+			body::before { background-image: linear-gradient(rgba(255, 70, 170, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 70, 170, 0.05) 1px, transparent 1px); }
+			#home { border-color: rgba(255, 70, 170, 0.45); background: rgba(35, 5, 22, 0.82); box-shadow: 0 0 32px rgba(255, 40, 150, 0.14); }
+			.ascii-title { color: #ffe6f2; text-shadow: 0 0 10px rgba(255, 60, 165, 0.55); }
+			.node-label, .psub, .slabel { color: rgba(255, 155, 205, 0.72); }
+			button { border-color: rgba(255, 70, 170, 0.65); background: #260b1b; color: #ff8bc5; box-shadow: inset 0 0 12px rgba(255, 40, 150, 0.12), 0 0 10px rgba(255, 40, 150, 0.1); }
+			button:hover, .corner-btn:hover, .social-link:hover { background: #5b123d; color: #fff; }
+			.corner-btn { border-color: rgba(255, 70, 170, 0.55); background: rgba(35, 5, 22, 0.92); color: #ff9dce; }
+			.linktree-qr { border-color: rgba(255, 120, 195, 0.75); }
+			.social-link { border-color: rgba(255, 70, 170, 0.55); background: rgba(35, 5, 22, 0.92); color: #ff9dce; }
+			.social-link.linktree { border-color: rgba(255, 120, 195, 0.65); color: #ffc1df; }
+			.overlay { background: rgba(25, 2, 15, 0.84); }
+			.panel { border-left-color: rgba(255, 70, 170, 0.45); background: #1f0715; }
+			.pcls { border-color: rgba(255, 70, 170, 0.55); color: #ff9dce; }
+			.ptitle { color: #ff6fb4; text-shadow: 0 0 12px rgba(255, 40, 150, 0.55); }
+			.pc { border-color: rgba(255, 70, 170, 0.25); color: rgba(255, 220, 237, 0.82); }
+			.pc h3 { color: #ffe6f2; }
+			.construction-banner {
+				border-color: #ffd400;
+				background: #ffd400;
+				color: #241300;
+				text-shadow: none;
+				box-shadow: 0 2px 18px rgba(255, 212, 0, 0.5);
 			}
 
 			#sj-frame {
@@ -65,14 +278,64 @@
 
 	<body>
 		<main id="home">
-			<button id="duckduckgo" type="button">2</button>
-			<button id="geforce-now" type="button">1</button>
+			<p class="construction-banner">// UNDER CONSTRUCTION //</p>
+			<pre class="ascii-title" aria-label="Infinite Node C ASCII logo">██▓ ███▄    █  █████▒ ██▓ ███▄    █  ██▓▄▄▄█████▓▓█████
+▓██▒ ██ ▀█   █▓██   ▒▓██▒ ██ ▀█   █▓██▒▓  ██▒ ▓▒▓█   ▀
+▒██▒▓██  ▀█ ██▒████ ░▒██▒▓██  ▀█ ██▒▒██▒▒ ▓██░ ▒░▒███
+░██░▓██▒  ▐▌██▒▓█▒  ░░██░▓██▒  ▐▌██▒░██░░ ▓██▓ ░ ▒▓█  ▄
+░██░▒██░   ▓██░▒█░   ░██░▒██░   ▓██░░██░  ▒██▒ ░ ░▒████▒
+░▓  ░▒░   ▒ ▒ ░   ░▓  ░▒░   ▒ ▒ ░▓   ▒ ░░   ░  ░▒░  ░</pre>
+			<p class="node-label">// NODE C ROUTES //</p>
+			<div class="node-actions">
+				<button id="duckduckgo" type="button">2</button>
+				<button id="geforce-now" type="button">1</button>
+			</div>
 		</main>
+		<button class="corner-btn" type="button" onclick="openPanel()">[ ABOUT ]</button>
+		<a class="linktree-qr-corner" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener" aria-label="Open Ashvir's Linktree">
+			<img class="linktree-qr" src="gifs/Ashvir_.png" alt="Scan to open Ashvir's Linktree" />
+		</a>
+		<div class="socials-row">
+			<a class="social-link" href="https://discord.gg/vNzvXMWzRF" target="_blank" rel="noopener">◈ DISCORD</a>
+			<a class="social-link linktree" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener">🌿 LINKTREE</a>
+		</div>
+		<div class="overlay" id="overlay" onclick="closePanel()"></div>
+		<aside class="panel" id="panel" aria-label="About Infinite">
+			<button class="pcls" type="button" onclick="closePanel()">[ X ]</button>
+			<div class="ptitle">INFINITE</div>
+			<p class="psub">// NODE C SYSTEM PANEL</p>
+			<div class="slabel">// ABOUT</div>
+			<div class="pc">
+				<h3>Welcome to Node C</h3>
+				Use the numbered buttons to open the configured destinations through this node. If one route does not load, try the other route.
+			</div>
+			<div class="pc">
+				<h3>Notice</h3>
+				You are responsible for your browsing activity. Use the service responsibly and expect some websites to behave differently through a proxy.
+			</div>
+			<div class="socials">
+				<div class="slabel">// FIND ME</div>
+				<a class="linktree-qr-link" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener">
+					<img class="linktree-qr" src="gifs/Ashvir_.png" alt="Scan to open Ashvir's Linktree" loading="lazy" />
+				</a>
+				<a class="social-link linktree" href="https://linktr.ee/Ashvir_" target="_blank" rel="noopener">🌿 LINKTREE</a>
+			</div>
+		</aside>
 		<form id="sj-form" hidden>
 			<input id="sj-search-engine" value="%s" type="hidden" />
 			<input id="sj-address" type="hidden" />
 		</form>
 		<p id="sj-error" hidden></p>
 		<pre id="sj-error-code" hidden></pre>
+		<script>
+			function openPanel() {
+				document.getElementById("panel").classList.add("open");
+				document.getElementById("overlay").classList.add("open");
+			}
+			function closePanel() {
+				document.getElementById("panel").classList.remove("open");
+				document.getElementById("overlay").classList.remove("open");
+			}
+		</script>
 	</body>
 </html>
